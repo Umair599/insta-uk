@@ -8,13 +8,14 @@
     "ios": "react-native run-ios",
     "web": "react-scripts start",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "antd": "^4.16.9",
     "antd-img-crop": "^3.14.3",
+    "axios": "^0.21.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "dotenv": "^8.2.0",
@@ -24,8 +25,11 @@
     "react-dom": "^17.0.2",
     "react-native": "0.64.2",
     "react-native-web": "^0.17.1",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-toast-notifications": "^2.5.1"
+    "react-toast-notifications": "^2.5.1",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
