@@ -2,7 +2,6 @@
   "name": "instagram",
   "version": "0.0.1",
   "private": true,
-  "main": "./index.js",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -12,6 +11,7 @@
     "test": "jest",
     "lint": "eslint ."
   },
+  "heroku-run-build-script": true,
   "dependencies": {
     "antd": "^4.16.9",
     "antd-img-crop": "^3.14.3",
