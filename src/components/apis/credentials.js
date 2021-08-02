@@ -1,5 +1,5 @@
 export const INSTAGRAM_APP_ID='381976333268643';
-export const REDIRECT_URI='SIGN_OUT';
+export const REDIRECT_URI='https://vigilant-feynman-76bbbe.netlify.app';
 export const INSTAGRAM_APP_SECRET='e328d4028f5d4c764688814a0db59586';
 
 
