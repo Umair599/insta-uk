@@ -29,7 +29,8 @@
     "react-router-dom": "^5.2.0",
     "react-toast-notifications": "^2.5.1",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
@@ -37,7 +38,7 @@
     "@react-native-community/eslint-config": "^3.0.0",
     "eslint": "^7.32.0",
     "metro-react-native-babel-preset": "^0.66.2",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^4.0.2",
     "react-test-renderer": "17.0.1"
   },
   "jest": {
