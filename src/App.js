@@ -1,40 +1,28 @@
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import React, {Component} from 'react';
-import {Button} from 'antd';
-import {InstagramFilled} from '@ant-design/icons';
-class App extends Component {
-  handleInstaClick = (e) => {
-    console.log('hello world');  
-  };
-
-  render() {
+import React from 'react';
+import { Provider } from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import reducers from './components/reducers';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from './components/screens/Login';
+import PostList from './components/screens/PostList';
+import PostShow from './components/screens/PostShow';
+import Explore from './components/screens/Explore';
+import Footer from "./components/screens/Footer";
+const store= createStore(reducers, applyMiddleware(thunk));
+const App = ()=> {
     return (
-      <SafeAreaView>
-        <View style={styles.container}>
-          <Text style={styles.welcome}>Welcome to insta-uk</Text>
-          <Button onClick={this.handleInstaClick}>
-            <InstagramFilled width="2rem" />
-            Login with Instagram
-          </Button>
-        </View>
-      </SafeAreaView>
+      <Provider store={store}>
+<Router>
+<Switch>
+              <Route exact path="/" component={Login}/>
+              <Route exact path="/home" component={PostList} />
+              <Route exact path="/home/:postId" component={PostShow} />
+              <Route exact path="/explore/posts" component={Explore}/>
+            </Switch>
+            <Footer />
+</Router>
+      </Provider>
     );
-  }
 }
-export default App;
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    position: 'relative',
-    alignItems: 'center',
-    textAlign: 'center',
-    backgroundColor: '#142a3d',
-    display: 'flex',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
-});
+export default (App);
