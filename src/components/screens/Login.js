@@ -28,6 +28,7 @@ class Login extends Component {
             <InstagramFilled width={'10rem'} />
             Login with Instagram
           </Button>
+<Link to={{ pathname: 'https://api.instagram.com/oauth/authorize?client_id=381976333268643&redirect_uri=https://www.instareactuk.com/&scope=user_profile,user_media&response_type=code'}} target='_blank'>This is second try</Link>
         </View>
       </SafeAreaView>
     );
