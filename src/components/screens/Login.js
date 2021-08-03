@@ -7,15 +7,27 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import LoginImage from '../images/login.jpg';
 class Login extends Component {
+   constructor(props) {
+    super(props);
+      console.log(window.location.href);
+    this.handleLoad = this.handleLoad.bind(this);
+ }
    state = {
     size: 'large',
     accessCode: '',
   };
-    componentDidMount(){
-       if(window.location.pathname.length>10){
-          console.log(window.location.pathname);
-       }
-  }
+  componentDidMount() {
+    window.addEventListener('load', this.handleLoad);
+     console.log(window.location.href);
+ }
+
+ componentWillUnmount() { 
+   window.removeEventListener('load', this.handleLoad)  
+ }
+
+ handleLoad() {
+   console.log(window.location.pathname);
+ }
   handleInstaClick = (e) => {
     console.log('hello world'); 
     //this.props.fetchCode(); 
