@@ -4,11 +4,15 @@ import {Button, Image} from 'antd';
 import {InstagramFilled} from '@ant-design/icons';
 import {fetchCode} from '../actions';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import LoginImage from '../images/login.jpg';
 class Login extends Component {
   handleInstaClick = (e) => {
     console.log('hello world'); 
-    this.props.fetchCode(); 
+    return(
+    <Link to={https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code}>api</Link>
+    );
+    //this.props.fetchCode(); 
   };
   state = {
     size: 'large',
