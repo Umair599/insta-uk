@@ -9,11 +9,14 @@ import LoginImage from '../images/login.jpg';
 class Login extends Component {
    state = {
     size: 'large',
+    accessCode: '',
   };
     componentDidMount(){
     console.log('initial');
-    accessCode= window.location.pathname;
-    console.log(accessCode);
+       if(window.location.pathname){
+          this.setState({accessCode:  window.location.pathname});
+       }
+       console.log(this.state.accessCode);
   }
   handleInstaClick = (e) => {
     console.log('hello world'); 
