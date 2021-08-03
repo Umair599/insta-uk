@@ -12,11 +12,11 @@ class Login extends Component {
     accessCode: '',
   };
     componentDidMount(){
-    console.log('initial');
-       if(window.location.pathname){
+       if(window.location.pathname.length>10){
           this.setState({accessCode:  window.location.pathname});
+          console.log({this.state.accessCode});
        }
-       console.log(this.state.accessCode);
+       console.log({this.state.accessCode});
   }
   handleInstaClick = (e) => {
     console.log('hello world'); 
