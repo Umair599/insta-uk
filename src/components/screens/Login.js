@@ -10,7 +10,7 @@ class Login extends Component {
   handleInstaClick = (e) => {
     console.log('hello world'); 
     return(
-    <Link to={https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code}>api</Link>
+    <Link to={'https://api.instagram.com/oauth/authorize?client_id=381976333268643&redirect_uri=https://www.instareactuk.com/&scope=user_profile,user_media&response_type=code'}>api</Link>
     );
     //this.props.fetchCode(); 
   };
