@@ -12,8 +12,6 @@ class Login extends Component {
   };
     componentDidMount(){
     console.log('initial');
-  }
-  componentDidUpdate(){
     accessCode= window.location.pathname;
     console.log(accessCode);
   }
