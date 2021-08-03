@@ -13,7 +13,7 @@ class Login extends Component {
   };
     componentDidMount(){
        if(window.location.pathname.length>10){
-          console.log({this.state.accessCode});
+          console.log(window.location.pathname);
        }
        console.log({this.state.accessCode});
   }
