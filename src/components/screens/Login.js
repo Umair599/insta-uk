@@ -6,10 +6,10 @@ import {fetchCode} from '../actions';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import LoginImage from '../images/login.jpg';
+import {INSTAGRAM_APP_ID, REDIRECT_URI} from '../apis/credentials';
 class Login extends Component {
    constructor(props) {
     super(props);
-      console.log(window.location.href);
     this.handleLoad = this.handleLoad.bind(this);
  }
    state = {
@@ -18,7 +18,6 @@ class Login extends Component {
   };
   componentDidMount() {
     window.addEventListener('load', this.handleLoad);
-     console.log(window.location.href);
  }
 
  componentWillUnmount() { 
@@ -26,11 +25,10 @@ class Login extends Component {
  }
 
  handleLoad() {
-   console.log(window.location.pathname);
+   this.setState({accessCode: window.location.pathname});
  }
   handleInstaClick = (e) => {
-    console.log('hello world'); 
-    //this.props.fetchCode(); 
+    window.location = `https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
   };
   render() {
     const { size } = this.state;
@@ -43,8 +41,7 @@ class Login extends Component {
             <InstagramFilled width={'10rem'} />
             Login with Instagram
           </Button>
-<a href='https://api.instagram.com/oauth/authorize?client_id=381976333268643&redirect_uri=https://www.instareactuk.com/&scope=user_profile,user_media&response_type=code'>this is new</a>
-<Link to={{ pathname: 'https://api.instagram.com/oauth/authorize?client_id=381976333268643&redirect_uri=https://www.instareactuk.com/&scope=user_profile,user_media&response_type=code'}} target='_blank'>This is second try</Link>
+{this.state.accessCode}
         </View>
       </SafeAreaView>
     );
