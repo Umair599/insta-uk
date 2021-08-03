@@ -15,7 +15,6 @@ class Login extends Component {
        if(window.location.pathname.length>10){
           console.log(window.location.pathname);
        }
-       console.log({this.state.accessCode});
   }
   handleInstaClick = (e) => {
     console.log('hello world'); 
