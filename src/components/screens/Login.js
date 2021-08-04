@@ -6,7 +6,7 @@ import {fetchCode} from '../actions';
 import {connect} from 'react-redux';
 import LoginImage from '../images/login.jpg';
 import {Link, useParams, useLocation} from 'react-router-dom';
-import {INSTAGRAM_APP_ID, REDIRECT_URI} from '../apis/credentials';
+import {INSTAGRAM_APP_ID, REDIRECT_URI, INSTAGRAM_APP_SECRET} from '../apis/credentials';
 const Login = (props)=>{
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
@@ -14,7 +14,18 @@ const Login = (props)=>{
   const [code, setCode]= useState(queryCode);
   useEffect(()=>{
 if(code){
-  props.fetchCode(code);
+  const requestOptions = {
+        method: 'POST',
+        body: { 
+            client_id: INSTAGRAM_APP_ID,
+                 client_secret: INSTAGRAM_APP_SECRET,
+                 grant_type: 'authorization_code',
+                  redirect_uri: REDIRECT_URI,
+                   code: code }
+    };
+    fetch('https://api.instagram.com/oauth/access_token', requestOptions).then((res)=>{
+  console.log(res);
+});
 }
   },[code]);
   const handleInstaClick = e => {
