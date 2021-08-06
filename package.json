@@ -14,12 +14,12 @@
   "heroku-run-build-script": true,
   "dependencies": {
     "antd": "^4.16.9",
-    "antd-img-crop": "^3.14.3",
-    "axios": "^0.21.1",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "dotenv": "^8.2.0",
-    "firebase": "^8.8.1",
     "html-webpack-plugin": "^4.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,7 +27,6 @@
     "react-native-web": "^0.17.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-toast-notifications": "^2.5.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "react-scripts": "^4.0.3"
