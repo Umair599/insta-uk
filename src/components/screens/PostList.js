@@ -5,8 +5,8 @@ import {fetchPosts, signOut} from '../actions';
 import Header from './Header';
 import {useLocation} from 'react-router-dom';
 import {StyleSheet, View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
-import Pagination from './pagination';
-import Popup from './Popup';
+import Pagination from '../utilities/Pagination';
+import Popup from '../utilities/Popup';
 
 const PostList= (props)=> {
     const { search } = useLocation();
