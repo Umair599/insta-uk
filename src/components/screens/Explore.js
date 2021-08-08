@@ -1,27 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import Loader from "./Loader";
 const Explore = (props) => {
   const { user, updateProfile } = useContext();
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    let x = [];
-    // firebase
-    //   .firestore()
-    //   .collection("posts")
-    //   .orderBy("timestamp", "desc")
-    //   .limit(9)
-    //   .get()
-    //   .then((data) => {
-    //     if (data.docs.length) {
-    //       data.docs.forEach((post) => {
-    //         x.push(post.data());
-    //       });
-    //     }
-    //     setPosts(x);
-    //     setLoading(false);
-    //   });
-  }, []);
   return (
     <div>
       {loading ? (
