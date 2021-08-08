@@ -1,30 +1,30 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {NavLink} from 'react-router-dom';
 const Footer = () => {
   return (
-    <View style={{
-      alignItems: 'center',
-      flex: 1,
-      justifyContent: 'flex-end',
-      alignContent: 'flex-end',
-      alignItems: 'center',
-    }}> 
-      <Text style={styles.footer}>
+    <View style={styles.footerView}> 
+      <Text style={styles.footerText}>
         Made By{" "}
-        <a href="http://merisite.online">Umair Khalid</a></Text>
+        <NavLink to={{pathname: 'http://merisite.online'}} target="_blank">Umair Khalid</NavLink>
+      </Text>
     </View>
   );
 };
 
 export default Footer;
 const styles = StyleSheet.create({
-  footer: {
+  footerView:{
+    justifyContent:'flex-end',
+    flexDirection:'column',
+   alignSelf:'center',
+  flex:1,
+    height:150,
+  },
+  footerText: {
     fontSize: 15,
     textAlign: 'center',
     textAlignVertical: 'bottom',
-    marginTop: 10,
-    marginBottom: 5,
     color: '#fa923f',
   },
-  
 });
