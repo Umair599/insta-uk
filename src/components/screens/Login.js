@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   mainRowSection:{
     flexDirection: 'row',
     height: height*0.75,
-    backgroundColor:'red',
     justifyContent:'space-evenly',
     alignSelf:'center',
     marginVertical:2
