@@ -23,6 +23,7 @@ const Login = (props)=>{
   const passwordInputRef = createRef();
   useEffect(()=>{
 if(code) {
+  setLoading(true);
   props.fetchCode(code); 
 }
   },[code]);
@@ -35,7 +36,6 @@ if(code) {
     window.location = `https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
     
   };
-  if (props.isSignedIn) props.history.push(`/${props.userId}/?accessToken=${props.accessToken}`);
     return (
         <View style={styles.container}>
           <Loader loading={loading} />
