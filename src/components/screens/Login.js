@@ -46,7 +46,7 @@ if(code) {
           <KeyboardAvoidingView enabled>
           <Image source={InstaImage} style={styles.brandImage} />
           <View style={styles.SectionStyle}>
-          <FontAwesomeIcon icon={faAt} size="1x" style={{ alignSelf:'center'}}/>
+          <FontAwesomeIcon icon={faAt} size="1x" style={{ alignSelf:'center', flex:1}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserEmail) =>
@@ -66,7 +66,7 @@ if(code) {
               />
             </View>
             <View style={styles.SectionStyle}>
-            <FontAwesomeIcon icon={faLock} size="1x" style={{ alignSelf:'center'}}/>
+            <FontAwesomeIcon icon={faLock} size="1x" style={{ alignSelf:'center', flex:1}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserPassword) =>
@@ -131,19 +131,22 @@ const styles = StyleSheet.create({
   loginImage:{
     resizeMode: 'contain',
     width: width*0.5,
-    height: height*0.7,
+    height: height*0.55,
   },
   loginSection:{
     flexDirection: 'column',
-    marginVertical: 10,
+    marginVertical: 5,
     alignContent:'center',
+    marginRight: 5,
     backgroundColor:'#fafafa',
     borderWidth: 1,
     borderColor: 'black',
     alignSelf:'center',
     width: width*0.4,
     borderRadius: 10,
-    padding: 5
+    padding: 5,
+    width: width*0.45,
+    height: height*0.45,
   },
   brandImage:{
     resizeMode: 'contain',
@@ -154,17 +157,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 20,
     height: 40,
-    marginHorizontal:5,
+    justifyContent:'center',
+    alignContent:'center',
+    flexShrink: true,
   },
   inputStyle: {
-    flex:1,
-    flexShrink: true,
-    color: 'black',
+    flex:12,
     paddingLeft: 4,
-    paddingRight: 2,
     borderWidth: 1,
     borderRadius: 10,
-    marginStart: 5
+    marginStart: 3,
+    marginRight:2
   },
   loginText:{
     fontSize: 20, fontWeight: '500'
