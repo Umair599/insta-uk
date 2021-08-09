@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions, KeyboardAvoidingView} from 'react-native';
 import React, {useEffect, useState, createRef} from 'react';
-import {fetchCode, fetchPosts} from '../actions';
+import {fetchCode} from '../actions';
 import {connect} from 'react-redux';
 import LoginImage from '../images/social_media.png';
 import {useLocation} from 'react-router-dom';
@@ -40,13 +40,13 @@ if(code) {
         <View style={styles.container}>
           <Loader loading={loading} />
           <Text style={styles.welcome}>Welcome to Insta-UK App</Text>
-          <View style={{flexDirection: 'row', justifyContent:'space-evenly', flex:1}}>
+          <View style={styles.mainRowSection}>
           <Image source={LoginImage} style={styles.loginImage} />
           <View style={styles.loginSection}>
           <KeyboardAvoidingView enabled>
           <Image source={InstaImage} style={styles.brandImage} />
           <View style={styles.SectionStyle}>
-          <FontAwesomeIcon icon={faAt} size="1x" style={{ alignSelf:'center', flex:1}}/>
+          <FontAwesomeIcon icon={faAt} size="1x" style={{ alignSelf:'center', width: width*0.02}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserEmail) =>
@@ -66,7 +66,7 @@ if(code) {
               />
             </View>
             <View style={styles.SectionStyle}>
-            <FontAwesomeIcon icon={faLock} size="1x" style={{ alignSelf:'center', flex:1}}/>
+            <FontAwesomeIcon icon={faLock} size="1x" style={{ alignSelf:'center', width: width*0.02}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserPassword) =>
@@ -89,7 +89,7 @@ if(code) {
               </Text>
             ) : null}
             <TouchableOpacity activeOpacity={0.2} style={styles.loginButton} onPress={handleLoginClick} >
-             <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginInline:15}}/>
+             <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginInline:5}}/>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
           <Text
@@ -112,57 +112,66 @@ const mapStateToProps=(state)=>{
     userId: state.auth.userId
   };
 }
-export default connect(mapStateToProps, {fetchCode, fetchPosts})(Login);
+export default connect(mapStateToProps, {fetchCode})(Login);
 const styles = StyleSheet.create({
   container: {
-    flex:1, 
-    justifyContent: 'center',
+    height: height*0.90,
     flexDirection: 'column',
-    marginVertical: 10,
-    alignContent: 'center',
     backgroundColor: '#ffffff',
   },
   welcome: {
-    fontSize: 30,
+    fontSize: width*0.04,
+    fontWeight:'bold',
     textAlign: 'center',
     marginVertical: 5,
+    justifyContent: 'flex-start',
     color: '#000000',
+    alignSelf:'center',
+  },
+  mainRowSection:{
+    flexDirection: 'row',
+    height: height*0.75,
+    backgroundColor:'red',
+    justifyContent:'space-evenly',
+    alignSelf:'center',
+    marginVertical:2
   },
   loginImage:{
     resizeMode: 'contain',
     width: width*0.5,
-    height: height*0.55,
+    height: height*0.7,
+    alignSelf:'center'
   },
   loginSection:{
     flexDirection: 'column',
-    marginVertical: 5,
+    marginVertical: 2,
     alignContent:'center',
     marginRight: 5,
     backgroundColor:'#fafafa',
     borderWidth: 1,
     borderColor: 'black',
     alignSelf:'center',
-    width: width*0.4,
     borderRadius: 10,
     padding: 5,
     width: width*0.45,
-    height: height*0.45,
+    height: height*0.5,
   },
   brandImage:{
     resizeMode: 'contain',
+    flex:1,
     width: 100,
     height: 50,
     alignSelf:'center'},
   SectionStyle: {
     flexDirection: 'row',
-    marginTop: 20,
-    height: 40,
+    marginTop: 5,
+    height: height*0.08,
     justifyContent:'center',
     alignContent:'center',
-    flexShrink: true,
   },
   inputStyle: {
-    flex:12,
+    width: width*0.4,
+    flexShrink:true,
     paddingLeft: 4,
     borderWidth: 1,
     borderRadius: 10,
@@ -182,10 +191,9 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 10,
     paddingHorizontal:40,
-    paddingVertical:10,
+    paddingVertical:5,
     height: 40,
-    width: 120,
-    flex:1,
+    width: width*0.3,
     cursor: 'pointer',
     flexWrap:'no-wrap', 
     alignSelf:'center',
@@ -197,6 +205,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     alignSelf: 'center',
-    padding: 10,
+    padding:4,
   },
 });
