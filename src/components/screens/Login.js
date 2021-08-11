@@ -1,11 +1,10 @@
-import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions, KeyboardAvoidingView} from 'react-native';
-import React, {useEffect, useState, createRef} from 'react';
-import {fetchCode} from '../actions';
+import {StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Dimensions, KeyboardAvoidingView, Keyboard} from 'react-native';
+import React, {useState, createRef} from 'react';
+import {signIn} from '../actions';
 import {connect} from 'react-redux';
 import LoginImage from '../images/social_media.png';
-import {useLocation} from 'react-router-dom';
+import {Redirect, useLocation, NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {INSTAGRAM_APP_ID, REDIRECT_URI} from '../apis/credentials';
 import { faInstagram} from '@fortawesome/free-brands-svg-icons';
 import { faLock, faAt } from '@fortawesome/free-solid-svg-icons';
 import Loader from '../utilities/Loader';
@@ -21,20 +20,24 @@ const Login = (props)=>{
   const [errortext, setErrortext] = useState('');
   const [loading, setLoading] = useState(false);
   const passwordInputRef = createRef();
-  useEffect(()=>{
-if(code) {
-  setLoading(true);
-  props.fetchCode(code); 
-}
-  },[code]);
-  useEffect(() => {
-    console.log('Long Access = ', props.accessToken);
-    if (props.accessToken) props.history.push(`/${props.userId}/?accessToken=${props.accessToken}`);
-  }, [props.accessToken]);
   const handleLoginClick = e => {
+    e.preventDefault;
+    setErrortext('');
+    if (!userEmail) {
+      alert('Please fill Email');
+      return;
+    }
+   
+    if (!userPassword) {
+      alert('Please fill Password');
+      return;
+    }
     setLoading(true);
-    window.location = `https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
-    
+    const formValues = {
+      email: userEmail,
+      password: userPassword,
+    };
+    props.signIn(formValues);
   };
     return (
         <View style={styles.container}>
@@ -46,7 +49,7 @@ if(code) {
           <KeyboardAvoidingView enabled>
           <Image source={InstaImage} style={styles.brandImage} />
           <View style={styles.SectionStyle}>
-          <FontAwesomeIcon icon={faAt} size="1x" style={{ alignSelf:'center', width: width*0.02}}/>
+          <FontAwesomeIcon icon={faAt} size="1x" style={{width: width*0.02, alignSelf:'center'}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserEmail) =>
@@ -66,7 +69,7 @@ if(code) {
               />
             </View>
             <View style={styles.SectionStyle}>
-            <FontAwesomeIcon icon={faLock} size="1x" style={{ alignSelf:'center', width: width*0.02}}/>
+            <FontAwesomeIcon icon={faLock} size="1x" style={{width: width*0.02, alignSelf:'center'}}/>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserPassword) =>
@@ -89,30 +92,32 @@ if(code) {
               </Text>
             ) : null}
             <TouchableOpacity activeOpacity={0.2} style={styles.loginButton} onPress={handleLoginClick} >
-             <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginInline:5}}/>
+             <FontAwesomeIcon icon={faInstagram} size="2x" style={{marginInline:6}}/>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
+          
           <Text
               style={styles.registerTextStyle}
-              onPress={() => console.log('SignUp')}>
+              onPress={() => (<Redirect to={'/register'}/>)}>
+              <NavLink to='/register'>
               New Here ? Register
+            </NavLink>
             </Text>
             </KeyboardAvoidingView>
       </View>
       
           </View>
         </View>
-   
+        
     );
 }
 const mapStateToProps=(state)=>{
   return {
     isSignedIn: state.auth.isSignedIn,
-    accessToken: state.auth.accessToken,
-    userId: state.auth.userId
+    userData: state.auth.data
   };
 }
-export default connect(mapStateToProps, {fetchCode})(Login);
+export default connect(mapStateToProps, {signIn})(Login);
 const styles = StyleSheet.create({
   container: {
     height: height*0.90,
@@ -130,7 +135,7 @@ const styles = StyleSheet.create({
   },
   mainRowSection:{
     flexDirection: 'row',
-    height: height*0.75,
+    flex:1,
     justifyContent:'space-evenly',
     alignSelf:'center',
     marginVertical:2

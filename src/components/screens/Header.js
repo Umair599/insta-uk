@@ -1,17 +1,18 @@
 import React from "react";
 import {View, Image, TouchableOpacity} from 'react-native';
 import InstaImage from '../images/insta_image.png';
-import { NavLink, Redirect} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
+import {signOut} from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faCompass, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import history from '../../history';
 const Header = (props) => {
 
   const handleLogout = () => {
-    props.auth.signOut(); 
-    if(!props.isSignedIn){
-      return <Redirect to='/'/>
-    }
+    props.signOut();
+    //window.location.replace('https://www.instareactuk.com');
+    history.push('/');
   };
   return (
     
@@ -50,4 +51,4 @@ const mapStateToProps=(state)=>{
       user: state.auth
   };
 }
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, {signOut})(Header);
