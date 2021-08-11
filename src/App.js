@@ -20,9 +20,9 @@ const App = ()=> {
         <View style={{flex:1, flexDirection:'column'}}>
         <Switch>
           <Route exact path="/" component={Login}/>
-          <Route exact path="/register" component={Register}/>
-          <Route exact path="/:userId" component={PostList} />
-          <Route exact path="/explore/posts" component={Explore}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/:userId" component={PostList} />
+          <Route path="/explore/posts" component={Explore}/>
         </Switch>
         <Footer />
         </View>
