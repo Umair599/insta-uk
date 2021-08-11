@@ -11,11 +11,12 @@ import Explore from './components/screens/Explore';
 import Footer from "./components/screens/Footer";
 import { auth } from './firebase/config';
 import {View} from 'react-native';
+import history from './history';
 const store= createStore(reducers, applyMiddleware(thunk));
 const App = ()=> {
   return (
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <View style={{flex:1, flexDirection:'column'}}>
         <Switch>
           <Route path="/" exact component={Login}/>
