@@ -11,7 +11,7 @@ export const signOut = ()=>{
     };
     
 };
-export const signUp = async formValues =>{
+export const signUp = formValues=>async dispatch =>{
     await firebase.auth().createUserWithEmailAndPassword(formValues.email,formValues.password ).then(async (resp) => {
         const docRef = firebase.firestore().doc(`/users/${formValues.email}`);
         let user = {};
@@ -23,6 +23,7 @@ export const signUp = async formValues =>{
         user.instaUserId='';
         user.instaAccessToken='';
         docRef.set(user);
+        dispatch({ type: SIGN_IN, payload: user});
         window.location = `https://api.instagram.com/oauth/authorize?client_id=${INSTAGRAM_APP_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
       })
       .catch((e) => {
@@ -33,8 +34,6 @@ export const signIn = formValues=> async dispatch=>{
     firebase.auth().signInWithEmailAndPassword(formValues.email, formValues.password).then(async (resp) => {
         const docRef = firebase.firestore().doc(`/users/${formValues.email}`);
         docRef.get().then((data) => {
-            console.log(data.data().instaUserId);
-            console.log(data.data().instaAccessToken);
             dispatch({ type: SIGN_IN, payload: data.data()});
             history.push(`/${data.data().instaUserId}/?accessToken=${data.data().instaAccessToken}`);
         });
