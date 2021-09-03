@@ -6,5 +6,6 @@
     The login User clicks on the Login Button and redirected to PostList which renderes the user media posted by User on Instagram.
     1- Run npm install to load npm packages.
     2- For development run 'npm start' and for production run 'npm build'.
+    The same app is also developed using react with redux saga and available "https://github.com/Umair599/insta-uk-with-saga.git"
     
 
